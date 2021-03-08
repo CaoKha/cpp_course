@@ -53,7 +53,8 @@ int main()
     std::cout << std::endl;
 
     //another way to do it
-    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it){
+    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it)
+    {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
