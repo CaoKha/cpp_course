@@ -34,14 +34,14 @@ int main()
     std::cout.put('\n');
 
     //testing with ofstream
-    std::ofstream output_file("text_file/test");
+    std::ofstream output_file("test/test.txt");
     output_file << "coucou" << my_var << " " << my_data << std::endl;
     output_file.put(cc);
     output_file.write(tabchar, 6);
     output_file.close();
 
     //testing with ifstream
-    std::ifstream entry("text_file/test2");
+    std::ifstream entry("test/test2.txt");
     std::string line;
     while (std::getline(entry, line))
     {
