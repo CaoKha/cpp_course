@@ -45,6 +45,7 @@
         "streambuf": "cpp",
         "typeinfo": "cpp",
         "bit": "cpp",
-        "complex": "cpp"
+        "complex": "cpp",
+        "map": "cpp"
     }
 }
