@@ -32,5 +32,10 @@ int main()
 
     int my_var = 5;
     A my_data{4};
-    std::cout << "coucou" << my_var << " "<< my_data <<std::endl;
+    std::cout << "coucou" << my_var << " " << my_data << std::endl;
+    char cc = '13';
+    std::cout.put(cc);
+
+    char tabchar[] = {'f', 'a', 'b', 'i', 'e', 'n'};
+    std::cout.write(tabchar, 60);
 }
