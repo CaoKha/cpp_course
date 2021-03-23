@@ -17,23 +17,27 @@ public:
         c.coin2 = 0;
         c.bill5 = 0;
         c.bill10 = 0;
-        while (s >= 10)
+
+        long even_or_odd = s % 2;
+
+        if (even_or_odd != 0) // odd
         {
-            s -= 10;
-            c.bill10++;
+            if (s >= 5) { // case >== 5, odd
+                s -= 5; // make it even
+                c.bill5 = 1;
+                c.bill10 = s / 10;
+                c.coin2 = (s - c.bill10*10) / 2;
+                return true;
+            }
+            else return false;// case < 5, odd
         }
-        if (s >= 5 && ((s-5)%2)==0 )
+        else if ( even_or_odd == 0 && s != 0 ) //even 
         {
-            c.bill5++;
-            c.coin2 = (s-5)/2;
+            c.bill10 = s / 10;
+            c.coin2 = (s-c.bill10*10) / 2;
             return true;
         }
-        else if ((s >= 5 && ((s-5)%2)!=0 && s%2 == 0) || (s<= 5 && (s%2)==0))
-        {
-            c.coin2 = s/2;
-            return true;
-        }
-        return false;
+        return false; // s = 0
     }
 };
 
@@ -46,7 +50,7 @@ int main()
     // std::cout << "bill5 = " << c.bill5 << std::endl;
     // std::cout << "coin2 = " << c.coin2 << std::endl;
     Change c;
-    long s = 26; // Change this value to test other cases
+    long s = 33; // Change this value to test other cases
     bool found = Answer::optimalChange(s, c);
 
     std::cout << "Coin(s)  2 : " << c.coin2 << std::endl;
@@ -54,8 +58,9 @@ int main()
     std::cout << "Bill(s) 10 : " << c.bill10 << std::endl;
 
     long result = c.coin2 * 2 + c.bill5 * 5 + c.bill10 * 10;
+    std::cout << "changeable? : "<<std::boolalpha << found << std::endl;
     std::cout << std::endl
-              << "Change given = " << result;
+              << "Change given = " << result << std::endl;
 }
 
 // #include <cmath>

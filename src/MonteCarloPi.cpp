@@ -16,12 +16,12 @@ class Pi
 {
 public:
     // approximate pi using the given points
-    static double approx(std::vector<Point> &pts)
+    double approx(std::vector<Point> &pts)
     {
         int count = 0;
         int total = 0;
         double pi;
-        for (int i = 0; i < 100000; i++)
+        for (int i = 0; i < pts.size(); i++)
         {
             if (pow(pts[i].x, 2) + pow(pts[i].y, 2) <= 1)
             {
@@ -58,5 +58,8 @@ int main()
         rands.push_back(p);
     }
 
-    std::cout << Pi::approx(rands); // ~3.14
+    Pi my_pi;
+
+    std::cout << my_pi.approx(rands) << std::endl; // ~3.14
+    std::cout << rands.size() << std::endl;
 }
