@@ -33,17 +33,50 @@ Otherwise NULL pointer.
 4/ Finally, close the directory stream pointed by dir variable.
 */
 
-void listFiles(const char *path){
-    struct dirent *dp;
-    DIR *dir=opendir(path);
+void listFiles(const std::string path)
+{
+    struct dirent *dp;                // pointer of type "struct dirent"
+    DIR *dir = opendir(path.c_str()); // pointer points to the first file in the folder
 
     // Unable to open directory stream
-    if(!dir)
+    if (!dir)
         return;
 
     while ((dp = readdir(dir)) != NULL)
     {
-        printf("%s\n", dp->d_name);
+        std::cout << dp->d_name << std::endl;
+    }
+    closedir(dir);
+}
+
+void listFilesRecursively(std::string &basePath, std::string &pathResult, const std::string &fileToFind, bool &found)
+{
+    std::string path;
+    struct dirent *dp;
+    DIR *dir = opendir((char *)basePath.c_str());
+
+    // Unable to open directory stream
+    if (!dir)
+    {
+        //do nothing
+        return;
+    }
+
+    while ((dp = readdir(dir)) != NULL)
+    {
+        if (strcmp(dp->d_name, ".") != 0 && strcmp(dp->d_name, "..") != 0)
+        {
+            path.assign(basePath);
+            path.append("/");
+            path.append(dp->d_name);
+            std::cout << path << std::endl;
+            if (std::string(dp->d_name).compare(fileToFind) == 0)
+            {
+                pathResult = path;
+                found = true;
+            }
+            listFilesRecursively(path, pathResult, fileToFind, found);
+        }
     }
     closedir(dir);
 }
@@ -51,16 +84,16 @@ void listFiles(const char *path){
 int main()
 {
     // Directory path to list files
-    char path[100];
-
+    std::string path("C:/Users/nguye/Documents/code/cpp_course");
+    std::string pathResult;
+    bool found = false;
     // Input path from user
-    printf("Enter path to list files:");
-    scanf("%s",path);
+    // printf("Enter path to list files:");
+    // scanf("%s",path);
 
-    listFiles(path);
-
-    return 0;
-
+    listFilesRecursively(path, pathResult, "zim.cpp", found);
+    if (found)
+        std::cout << "Found at: " << pathResult << std::endl;
+    else
+        std::cout << "Not found!" << std::endl;
 }
-
-
