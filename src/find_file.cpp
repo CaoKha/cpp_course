@@ -83,14 +83,9 @@ void listFilesRecursively(std::string &basePath, std::string &pathResult, const 
 
 int main()
 {
-    // Directory path to list files
     std::string path("C:/Users/nguye/Documents/code/cpp_course");
     std::string pathResult;
     bool found = false;
-    // Input path from user
-    // printf("Enter path to list files:");
-    // scanf("%s",path);
-
     listFilesRecursively(path, pathResult, "zim.cpp", found);
     if (found)
         std::cout << "Found at: " << pathResult << std::endl;
