@@ -85,8 +85,9 @@ int main()
 {
     std::string path("C:/Users/nguye/Documents/code/cpp_course");
     std::string pathResult;
+    std::string fileToFind("zim.cpp");
     bool found = false;
-    listFilesRecursively(path, pathResult, "zim.cpp", found);
+    listFilesRecursively(path, pathResult, fileToFind, found);
     if (found)
         std::cout << "Found at: " << pathResult << std::endl;
     else
