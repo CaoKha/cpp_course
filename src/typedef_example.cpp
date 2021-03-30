@@ -47,7 +47,7 @@ std::ostream &operator<<(std::ostream &out, const days &d)
 
 int main()
 {
-    days d(MON);
-    d = ++d;
-    std::cout << d << std::endl;
+    days d(MON), e;
+    e= ++d;
+    std::cout << e << std::endl;
 }
