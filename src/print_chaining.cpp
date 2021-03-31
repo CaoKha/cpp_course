@@ -6,7 +6,6 @@ struct list_element
     list_element *next; // pointer next point to the structure itself
     list_element(int n = 0, list_element *ptr = nullptr) : d(n), next(ptr){};
 };
-
 class list
 {
 private:
@@ -15,6 +14,8 @@ private:
 
 public:
     list() : head(nullptr), cursor(nullptr) {}
+    list(list_element* lst){};
+    list(const list& lst);
     void prepend(int n); // insert at front value n
     int get_element() { return cursor->d; }
     void advance() { cursor = cursor->next; }
@@ -38,6 +39,35 @@ void list::print()
         h = h->next;
     }
     std::cout << "###" << std::endl;
+};
+
+// copy constructor
+list::list(const list& lst)
+{
+    if (lst.head == nullptr)
+    {
+        head = nullptr;
+        cursor = nullptr;
+    }
+    else
+    {
+        cursor = lst.head;
+        list_element *h = new list_element();
+        list_element *previous;
+        head = h;
+        h->d = lst.head->d;
+        previous = h;
+
+        for (cursor = lst.head; cursor != 0;)
+        {
+            h = new list_element();
+            h->d = cursor->d;
+            previous->next = h;
+            cursor = cursor->next;
+            previous = h;
+        }
+        cursor = head;
+    }
 }
 
 int main()
@@ -47,10 +77,13 @@ int main()
     a.prepend(8);
     std::cout << "list a" << std::endl;
     a.print();
-    for (int i = 0; i<40;++i)
-        b.prepend(i*i);
-    std::cout << "list b" <<std::endl;
+    for (int i = 0; i < 40; ++i)
+        b.prepend(i * i);
+    std::cout << "list b" << std::endl;
     b.print();
+    list c(b);
+    std::cout << "list c" << std::endl;
+    c.print();
 }
 
 /* output:
