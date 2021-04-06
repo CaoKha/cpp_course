@@ -24,7 +24,7 @@ public:
     virtual double length() { return sqrt(first * first + second * second); } // virtual function
 };
 
-class point3d final: public point // final = no further inheritance
+class point3d final : public point // final = no further inheritance
 {
 private:
     double z;
@@ -33,6 +33,19 @@ public:
     point3d() : point(), z(0.0) {}
     double length() { return sqrt(first * first + second * second + z * z); } // overidden the virtual function in point class
     void set_z(double d) { z = d; }
+};
+
+class B
+{
+public:
+    int i;
+    virtual void print_i() const { std::cout << i << " inside B" << std::endl; }
+};
+
+class D : public B
+{
+public:
+    void print_i() const { std::cout << i << " inside D" << std::endl; } //virtual
 };
 
 int main()
@@ -48,5 +61,14 @@ int main()
     q3.set_second(4.0);
     q3.set_z(5.0);
     std::cout << q3.length() << std::endl;
+
+    B b;
+    B *pb = &b;
+    D f;
+
+    f.i = 1 + (b.i=1);
+    pb->print_i();
+    pb = &f;
+    pb->print_i();
     return 0;
 }
