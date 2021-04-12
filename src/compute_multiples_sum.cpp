@@ -1,24 +1,24 @@
 #include <iostream>
 #include <vector>
 
-void removeElement(std::vector<int> &arr, int index)
+void removeElement(std::vector<int> &arr, std::vector<int>::iterator index)
 {
-    int i;
-    for (i = index; i < arr.size() - 1; i++)
-        arr[i] = arr[i + 1];
+
+    for (auto it = index; it != arr.end() - 2; it++)
+        *it = *(it + 1);
     arr.pop_back();
 }
 void filter_dub(std::vector<int> &arr)
 {
-    for (int i = 0; i < arr.size(); i++)
+    for (auto it = arr.begin(); it != arr.end(); it++)
     {
-        int temp = arr[i];
-        for (int j = i + 1; j < arr.size(); j++)
+        int temp = *it;
+        for (auto jt = it + 1; jt != arr.end(); jt++)
         {
-            if (temp == arr[j])
+            if (temp == *jt)
             {
-                removeElement(arr,j);
-                j--;
+                removeElement(arr,jt);
+                jt--;
             }
         }
     }
@@ -27,9 +27,9 @@ void filter_dub(std::vector<int> &arr)
 int compute_multiples_sum(int n)
 {
     int sum = 0;
-    int mul3 = n / 3;
-    int mul5 = n / 5;
-    int mul7 = n / 7;
+    int mul3 = (n-1) / 3;
+    int mul5 = (n-1) / 5;
+    int mul7 = (n-1) / 7;
     std::vector<int> storage;
     for (int i = 1; i <= mul3; i++)
     {
@@ -52,6 +52,6 @@ int compute_multiples_sum(int n)
 }
 
 int main(){
-    int result = compute_multiples_sum(14);
+    int result = compute_multiples_sum(15);
     std::cout << result << std::endl;
 }
