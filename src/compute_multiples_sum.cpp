@@ -1,24 +1,24 @@
 #include <iostream>
 #include <vector>
 
-void removeElement(std::vector<int> &arr, std::vector<int>::iterator index)
+void removeElement(std::vector<int> &arr, int index)
 {
 
-    for (auto it = index; it != arr.end() - 2; it++)
-        *it = *(it + 1);
+    for (int i = index; i < arr.size() - 1; i++)
+        arr[i] = arr[i+1];
     arr.pop_back();
 }
 void filter_dub(std::vector<int> &arr)
 {
-    for (auto it = arr.begin(); it != arr.end(); it++)
+    for (int i = 0; i < arr.size(); i++)
     {
-        int temp = *it;
-        for (auto jt = it + 1; jt != arr.end(); jt++)
+        int temp = arr[i];
+        for (auto j = i + 1; j < arr.size(); j++)
         {
-            if (temp == *jt)
+            if (temp == arr[j])
             {
-                removeElement(arr,jt);
-                jt--;
+                removeElement(arr,j);
+                j--;
             }
         }
     }
@@ -44,7 +44,7 @@ int compute_multiples_sum(int n)
         storage.push_back(7 * i);
     }
     filter_dub(storage);
-    for (auto& v : storage)
+    for (auto v : storage)
     {
         sum+=v;
     }
@@ -52,6 +52,6 @@ int compute_multiples_sum(int n)
 }
 
 int main(){
-    int result = compute_multiples_sum(15);
+    int result = compute_multiples_sum(100);
     std::cout << result << std::endl;
 }
