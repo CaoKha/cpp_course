@@ -12,10 +12,10 @@ void filter_dub(std::vector<int> &arr)
 {
     for (int i = 0; i < arr.size(); i++)
     {
-        int temp = arr[i];
+        // int temp = arr[i];
         for (auto j = i + 1; j < arr.size(); j++)
         {
-            if (temp == arr[j])
+            if (arr[i] == arr[j])
             {
                 removeElement(arr,j);
                 j--;
