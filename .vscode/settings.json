@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.ipynb": "jupyter",
+        "*.sqlite": "sqlite",
         "array": "cpp",
         "atomic": "cpp",
         "*.tcc": "cpp",
@@ -53,6 +54,7 @@
         "chrono": "cpp",
         "cstring": "cpp",
         "ratio": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "list": "cpp"
     }
 }

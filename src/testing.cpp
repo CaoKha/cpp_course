@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <bitset>
+#include <cstring>
+
 #define MAX 100;
 
 class A
@@ -50,21 +53,33 @@ int b()
     return 0;
 }
 
-typedef union {
+typedef union
+{
     char a;
     char b;
 } myUnion;
+
+typedef struct
+{
+    unsigned int i : 1;
+    char a;
+    int b;
+} mystruct;
+
+
 int main()
 {
     // std::list<int> l(2);
-    // l.push_back(1);
+    // l.push_back(1); 
+
     // const A *a = new A();
     // int val = a->value();
     // std::cout << val << std::endl;
+
     // char *str = "hello";
     // std::cout << l.size() << std::endl;
-    // int s = 0;
     
+    // int s = 0;
     // switch (s)
     // {
     // case 1:
@@ -74,15 +89,15 @@ int main()
     // case 2:
     // std::cout << "2";
     // }
-    
+
     // int b = 1;
     // A::print(b*0.1);
 
     // D d;
     // int val = d.get();
     // std::cout << val << std::endl;
-    
-    // if (a() | b()){
+
+    // if (a() && b()){
     //     std::cout << "main";
     //     return 0;
     // }
@@ -92,7 +107,38 @@ int main()
     // int *pa = &a;
     // int *pb = &b;
     // std::cout<< (pa == pb);
-    int a = 1 ^ 11;
-    std::cout << a;
-    return 0;
+    
+    // auto a = 0b01 ^ 0b11; //XOR
+    // std::cout << a;
+    // result = 2 (0010)
+
+    std::cout << sizeof(myUnion);
+    // result: 4
+
+    // mystruct s;
+    // s.i = 1;
+    // s.i++;
+    // std::cout << s.i;
+    // result: s.i = 0
+    
+    // int a = 1;
+    // int *p = &a;
+    // *p++;
+    // std::cout << a;
+    // result: a = 1
+    
+    // if(-1) {std::cout << "true" << std::endl;}
+    // else {std::cout << "false" << std::endl;}
+    // result: 0=false else = true 
+
+    // mystruct s1;
+    // s1.a = 'a';
+    // s1.b=2;
+    // mystruct s2;
+    // s2.a='a';
+    // s2.b=2;
+    // int cmp = std::memcmp(&s1,&s2,sizeof(mystruct));
+    // std::cout << cmp << std::endl; 
+    // result: imprevisible
+    
 }
