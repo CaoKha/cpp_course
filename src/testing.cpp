@@ -101,18 +101,26 @@ int main()
     //     std::cout << "main";
     //     return 0;
     // }
+    // result: a
+
+    // if (a() || b()){
+    //     std::cout << "main";
+    //     return 0;
+    // }
+    // result: ab
 
     // int a = 1;
     // int b = 1;
     // int *pa = &a;
     // int *pb = &b;
     // std::cout<< (pa == pb);
-    
+    // result: 0
+
     // auto a = 0b01 ^ 0b11; //XOR
     // std::cout << a;
     // result = 2 (0010)
 
-    std::cout << sizeof(myUnion);
+    // std::cout << sizeof(myUnion);
     // result: 4
 
     // mystruct s;
@@ -140,5 +148,9 @@ int main()
     // int cmp = std::memcmp(&s1,&s2,sizeof(mystruct));
     // std::cout << cmp << std::endl; 
     // result: imprevisible
-    
+
+    // const char* name = "StudyTonight";
+    // std::cout << name[11] << std::endl;   
+
+    // std::cout << (2>>1) << std::endl;
 }
