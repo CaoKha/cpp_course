@@ -37,7 +37,7 @@ public:
             c.coin2 = (s-c.bill10*10) / 2;
             return true;
         }
-        return false; // s = 0
+        else return false; // s = 0
     }
 };
 

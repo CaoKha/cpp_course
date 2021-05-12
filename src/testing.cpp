@@ -120,7 +120,7 @@ int main()
     // std::cout << a;
     // result = 2 (0010)
 
-    // std::cout << sizeof(myUnion);
+    std::cout << sizeof(myUnion);
     // result: 4
 
     // mystruct s;
